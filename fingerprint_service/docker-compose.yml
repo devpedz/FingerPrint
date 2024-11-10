@@ -4,7 +4,7 @@ services:
   fingerprint_engine:
     image: dahirmuhammaddahir/grpc_fingerprint_engine
     ports:
-      - 4134:4134
+      - 4135:4135
     restart: unless-stopped
     networks:
       - fingerprint_engine_net
@@ -13,7 +13,7 @@ services:
     image: r3y3s_fingerprint
     build: .
     ports:
-      - 5556:80  # Changed port to avoid conflict
+      - 5557:3030  # Changed port to avoid conflict
     restart: unless-stopped
     depends_on:
       - fingerprint_engine
