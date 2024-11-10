@@ -4,9 +4,10 @@ services:
   fingerprint_engine:
     image: dahirmuhammaddahir/grpc_fingerprint_engine
     ports:
-      - 4134:4134
+      - 4134:4134  # Use a unique port for each service
     restart: unless-stopped
-    container_name: fingerprint_engine
+    # Avoid using container_name unless absolutely necessary
+    container_name: fingerprint_engine_$(hostname)
     networks:
       - fingerprint_engine_net
   
@@ -14,9 +15,10 @@ services:
     image: r3y3s_fingerprint
     build: .
     ports:
-      - 5555:80
+      - 5556:80  # Changed port to avoid conflict
     restart: unless-stopped
-    container_name: r3y3s_fingerprint_client
+    # Avoid using container_name unless absolutely necessary
+    container_name: fingerprint_client_$(hostname)
     depends_on:
       - fingerprint_engine
     networks:
@@ -26,4 +28,3 @@ services:
 networks:
   fingerprint_engine_net:
   fingerprint_client_net:
-
